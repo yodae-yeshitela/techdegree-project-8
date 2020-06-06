@@ -8,12 +8,9 @@ var {Op} = require('sequelize');
 const createError = require('http-errors');
 
 function asyncHandler(cb){
-    return async(req, res, next) => {
-      try{
-        await cb(req,res,next)
-      } catch (error){
-        res.status(500).send(error);
-      }
+    return (req, res, next) => {
+      Promise.resolve(cb(req,res,next))
+              .catch( () => next(createError(500)))
     }
   }
 
@@ -68,7 +65,7 @@ router.get('/:id', async function (req, res, next) {
     const book = await db.Book.findByPk(req.params.id);
     if(book === null)
     {
-      return res.render('page-not-found');
+      return next(createError(404));
     }
     res.render('update-book', { book });
   });
