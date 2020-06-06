@@ -140,3 +140,6 @@ div.search-box{
   background-color: gray;
   cursor: none;
 }
+.success{
+  color: rgb(58, 175, 58);
+}

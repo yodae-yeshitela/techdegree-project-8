@@ -1,6 +1,9 @@
 extends layout
 
 block content
+
+    if(updated)
+        h3.success Changes saved!
     h1 Update Book
     if(errors)
         p.error Ooops an error occurred!
