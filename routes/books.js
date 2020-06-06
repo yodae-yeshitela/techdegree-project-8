@@ -47,7 +47,6 @@ router.get('/', async function (req, res, next) {
     res.render('index', { books, searchTerm, pageCount, searchTerm, currentPage: pageNumber });
   });
 router.get('/new', async function (req, res, next) {
-    const books = await db.Book.findAll({order: [['title','ASC']]});
     res.render('new-book');
   });
 router.post('/new', asyncHandler( async(req,res,next) => {
