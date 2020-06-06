@@ -3,14 +3,14 @@ body {
   font: 18px "Garamond", serif;
 }
 
-a {
+a.book-link {
   color: #019875;
   text-decoration: none;
   font-weight: bold;
   transition: 0.4s;
 }
 
-  a:hover {
+  a.book-link:hover {
     color: black;
   }
 
@@ -81,13 +81,15 @@ label {
   transition: 0.4s;
 }
 
-input {
+input.search-field[type=text] {
   padding: 10px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: 6px;
   border-color: #E7E7E7;
   transition: 0.4s;
+  margin-right: 2rem;
+  margin-left: 0px;
 }
 
 input[type=text] {
@@ -98,22 +100,7 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
-ul.navigation{
-  list-style: none;
-}
 
-a.nav_button {
-  color: black;
-  padding: 8px 16px;
-  text-decoration: none;
-  background-color: #019875;
-  margin-right: 0.5em;
-
-  
-}
-a.nav_button:hover{
-  cursor: pointer;
-}
 a.reset_button{
   color: white;
   background: #019875;
@@ -123,4 +110,33 @@ a.reset_button{
   border-radius: 2px;
   cursor: pointer;
   margin-left: 2px;
+  text-decoration: none;
+}
+div.search-box{
+  margin-bottom: 1rem;
+}
+
+.pagination{
+  display: block;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.pagination a{
+  color:white;
+  background-color: #019875;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 2px;
+  margin-right: 1rem;
+}
+
+.pagination a:hover{
+  cursor: pointer;
+  background-color: #01b189;
+}
+
+.pagination a.active{
+  cursor: pointer;
+  background-color: gray;
+  cursor: none;
 }

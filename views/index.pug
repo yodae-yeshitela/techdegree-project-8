@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  
   h1 Books
   p
     a(href='/books/new').button Create New Book
-  form(method="get")
-    input(name="search_key" placeholder="Search..." type="text" value= searchTerm)
-    input(type="submit", value="Search").search_button 
-    a.reset_button(href='?page=1') Reset Search
+  
+  div.search-box
+    form(method="get")
+      input.search-field(name="search_key" placeholder="Search..." type="text" value= searchTerm)
+      input(type="submit", value="Search").search_button 
+      a.reset_button(href='?page=1') Clear Search
   table
     thead
       tr  
@@ -20,14 +21,14 @@ block content
       each book in books
         tr
           td
-            a(href=`/books/${book.id}`)= book.title
+            a.book-link(href=`/books/${book.id}`)= book.title
           td= book.author
           td= book.genre
           td= book.year
   - var i = 1; 
-  ul.navigation
-    a.nav_button <<
+  div.pagination
     while i <= pageCount
-      a.nav_button(href=`?page=${i}&search_key=${searchTerm}`)= i++
-    a.nav_button >>
+      a(class= i==currentPage?"active":"", href=`?page=${i}&search_key=${searchTerm}`)= i++
+      
+
   

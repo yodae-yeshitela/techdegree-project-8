@@ -44,7 +44,7 @@ router.get('/', async function (req, res, next) {
         }
     }});
     const pageCount = Math.ceil(count/10);
-    res.render('index', { books, searchTerm, pageCount, searchTerm });
+    res.render('index', { books, searchTerm, pageCount, searchTerm, currentPage: pageNumber });
   });
 router.get('/new', async function (req, res, next) {
     const books = await db.Book.findAll({order: [['title','ASC']]});
