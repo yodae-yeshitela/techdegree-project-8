@@ -7,6 +7,10 @@ var {Op} = require('sequelize');
 
 const createError = require('http-errors');
 
+const bookNotFound = createError(404);
+bookNotFound.message = "Book not found";
+
+
 function asyncHandler(cb){
     return (req, res, next) => {
       Promise.resolve(cb(req,res,next))
@@ -66,7 +70,7 @@ router.get('/:id', async function (req, res, next) {
     const book = await db.Book.findByPk(req.params.id);
     if(book === null)
     {
-      return next(createError(404));
+      return next(bookNotFound);
     }
     res.render('update-book', { book });
   });
@@ -75,7 +79,7 @@ router.post('/:id', asyncHandler(async (req,res,next) => {
     const book = await db.Book.findByPk(req.params.id);
     if(book === null)
     {
-      return next(createError(404));
+      return next(bookNotFound);
     }
     try{
       await book.update(req.body);
@@ -94,7 +98,9 @@ router.post('/:id/delete', asyncHandler(async (req,res,next) => {
   const book = await db.Book.findByPk(req.params.id);
   if(book === null)
   {
-    return next(createError(404));
+    const error = createError(bookNotFound);
+    error.message = 'Book not found'
+    return next(error);
   }
   
   await book.destroy();
